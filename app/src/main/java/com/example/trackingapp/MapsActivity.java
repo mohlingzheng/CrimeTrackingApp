@@ -22,6 +22,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.Circle;
 import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
@@ -109,6 +110,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         final ArrayList<String> name = new ArrayList<>();
         final List<Double> longitudeList = new ArrayList<>();
         final List<Double> latitudeList = new ArrayList<>();
+        final List<Integer> riskList = new ArrayList<>();
         ArrayList<MyLatLngData> locations = new ArrayList<>();
         DatabaseReference myRef = FirebaseDatabase.getInstance().getReference().child("Places");
         myRef.addValueEventListener(new ValueEventListener() {
@@ -121,15 +123,33 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     name.add(ds.child("Name").getValue(String.class));
                     longitudeList.add(ds.child("Longitude").getValue(Double.class));
                     latitudeList.add(ds.child("Latitude").getValue(Double.class));
-                    locations.add(new MyLatLngData(name.get(i), latitudeList.get(i), longitudeList.get(i)));
+                    riskList.add(ds.child("Risk").getValue(Integer.class));
+                    locations.add(new MyLatLngData(name.get(i), latitudeList.get(i), longitudeList.get(i), riskList.get(i)));
                     LatLng temp = new LatLng(latitudeList.get(i), longitudeList.get(i));
                     i++;
                 }
                 // Add markers and move the camera
                 for(MyLatLngData location : locations){
-                    mMap.addMarker(new MarkerOptions()
-                            .position(location.getLatLng())
-                            .title("Marker in " + location.getName()));  // here you could use location.getTitle()
+                    if (location.getRisk() == 1) {
+                        mMap.addMarker(new MarkerOptions()
+                                .position(location.getLatLng())
+                                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_CYAN))
+                                .title("Marker in " + location.getName()));  // here you could use location.getTitle()
+                    }
+                    else if (location.getRisk() == 2) {
+                        mMap.addMarker(new MarkerOptions()
+                                .position(location.getLatLng())
+                                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE))
+                                .title("Marker in " + location.getName()));  // here you could use location.getTitle()
+                    }
+
+                    else if (location.getRisk() == 3) {
+                        mMap.addMarker(new MarkerOptions()
+                                .position(location.getLatLng())
+                                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED))
+                                .title("Marker in " + location.getName()));  // here you could use location.getTitle()
+                    }
+
                     mMap.moveCamera(CameraUpdateFactory.newLatLng(location.getLatLng()));
                 }
                 //Log.d("TAG", "Country: " + name + " / Longitude: " + longitudeList + " / Latitude: " + latitudeList);
@@ -170,10 +190,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private static class MyLatLngData {
         private String name;
         private LatLng latlng;
+        private int risk;
 
-        public MyLatLngData(String name, double lat, double lng) {
+        public MyLatLngData(String name, double lat, double lng, int risk) {
             this.name = name;
             this.latlng = new LatLng(lat, lng);
+            this.risk = risk;
         }
 
         // add getters and setters or make fields public....e.g.
@@ -187,6 +209,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         public String getName() {
             return name;
+        }
+
+        public int getRisk() {
+            return risk;
         }
     }
 }
