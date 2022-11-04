@@ -9,6 +9,7 @@ import androidx.fragment.app.FragmentActivity;
 import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -21,6 +22,8 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.Circle;
+import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.example.trackingapp.databinding.ActivityMapsBinding;
@@ -113,12 +116,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
+                int i =0;
                 for(DataSnapshot ds : dataSnapshot.getChildren()) {
-                    int i = 0;
                     name.add(ds.child("Name").getValue(String.class));
                     longitudeList.add(ds.child("Longitude").getValue(Double.class));
                     latitudeList.add(ds.child("Latitude").getValue(Double.class));
                     locations.add(new MyLatLngData(name.get(i), latitudeList.get(i), longitudeList.get(i)));
+                    LatLng temp = new LatLng(latitudeList.get(i), longitudeList.get(i));
                     i++;
                 }
                 // Add markers and move the camera
@@ -128,7 +132,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             .title("Marker in " + location.getName()));  // here you could use location.getTitle()
                     mMap.moveCamera(CameraUpdateFactory.newLatLng(location.getLatLng()));
                 }
-                Log.d("TAG", "Country: " + name + " / Longitude: " + longitudeList + " / Latitude: " + latitudeList);
+                //Log.d("TAG", "Country: " + name + " / Longitude: " + longitudeList + " / Latitude: " + latitudeList);
             }
 
             @Override
