@@ -61,8 +61,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     /** public variable to be accessible from all the functions */
     public List<Crime> crimeList = new ArrayList<>();      // to store all the crime
     public List<Crime> crimeInCircle = new ArrayList<>();  // to store crime within the range
-    public int distanceConsidered = 350;    // can change this value to test the radius
-                                            // green = 250, yellow = 270, red = 350
+    public int distanceConsidered = 350;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,13 +79,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
             LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
             if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                // TODO: Consider calling
-                //    ActivityCompat#requestPermissions
-                // here to request the missing permissions, and then overriding
-                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                //                                          int[] grantResults)
-                // to handle the case where the user grants the permission. See the documentation
-                // for ActivityCompat#requestPermissions for more details.
                 return;
             }
             currentLocation = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
