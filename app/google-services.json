@@ -1,0 +1,82 @@
+{
+  "project_info": {
+    "project_number": "952078867325",
+    "project_id": "map-project-367201",
+    "storage_bucket": "map-project-367201.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:952078867325:android:bc73bcc5434c417ab44a14",
+        "android_client_info": {
+          "package_name": "com.example.maps"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "952078867325-pakj1pl0c4l0r5gvhnn0m21jl6pcqdn4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.maps",
+            "certificate_hash": "e9c177ee9e876bb0b428543e53e74b2cbb22e139"
+          }
+        },
+        {
+          "client_id": "952078867325-4gm1q6n077bcgafji9ssguliht10mi7n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCzZNaWSWws5aJCLoXy_8al2a97iumSnrI"
+        },
+        {
+          "current_key": "AIzaSyDQzRE9eOVtUU2x2RFh8xrprVWf8aqG2CQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "952078867325-4gm1q6n077bcgafji9ssguliht10mi7n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:952078867325:android:34c1d063be4d0562b44a14",
+        "android_client_info": {
+          "package_name": "com.example.trackingapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "952078867325-4gm1q6n077bcgafji9ssguliht10mi7n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCzZNaWSWws5aJCLoXy_8al2a97iumSnrI"
+        },
+        {
+          "current_key": "AIzaSyDQzRE9eOVtUU2x2RFh8xrprVWf8aqG2CQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "952078867325-4gm1q6n077bcgafji9ssguliht10mi7n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
