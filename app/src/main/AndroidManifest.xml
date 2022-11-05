@@ -32,7 +32,7 @@
             android:value="AIzaSyCNI3GvQMf4Ma2cAh3Busq0PCoEHmoPRDc" />
 
         <activity
-            android:name=".MapsActivity"
+            android:name=".CrimeTracking"
             android:exported="true"
             android:label="@string/title_activity_maps">
             <intent-filter>

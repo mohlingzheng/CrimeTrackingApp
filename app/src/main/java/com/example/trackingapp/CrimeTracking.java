@@ -10,20 +10,15 @@ import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
-import android.location.Address;
-import android.location.Geocoder;
 import android.location.Location;
-import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
 
-import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.Circle;
 import com.google.android.gms.maps.model.CircleOptions;
@@ -37,12 +32,10 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
 
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
 import java.util.List;
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
+public class CrimeTracking extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
     private ActivityMapsBinding binding;
@@ -61,7 +54,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     /** public variable to be accessible from all the functions */
     public List<Crime> crimeList = new ArrayList<>();      // to store all the crime
     public List<Crime> crimeInCircle = new ArrayList<>();  // to store crime within the range
-    public int distanceConsidered = 350;
+    public int distanceConsidered = 450;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -138,6 +131,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
     }
+
     private boolean isLocationPermissionGranted(){
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
                 == PackageManager.PERMISSION_GRANTED){
@@ -214,6 +208,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         int crimeLevel=0;
         for (Crime crime : crimeInCircle)               // sum the total risk value
             crimeLevel = crimeLevel + crime.risk;
+
+
 
         calculatedRisk = (TextView) findViewById(R.id.displayRisk);
 
