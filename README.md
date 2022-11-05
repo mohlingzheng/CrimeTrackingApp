@@ -40,3 +40,5 @@ The crime location in the database only fixs in Penang USM area for showcase.
 The location for emulator might vary according to devices.
 
 The distance value can be changed accordingly for testing purpose.
+
+First time running the apps requires Location Permission. After allowing it, restart the application.
